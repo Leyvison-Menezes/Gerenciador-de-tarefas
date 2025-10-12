@@ -1,0 +1,21 @@
+{
+  "name": "gerenciador-de-tarefas",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts"
+  },
+  "keywords": [],
+  "author": "Leyvison Menezes",
+  "license": "ISC",
+  "description": "Uma API de gerenciamento de tarefas",
+  "dependencies": {
+    "express": "^5.1.0",
+    "tsx": "^4.20.6"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.7.2",
+    "typescript": "^5.9.3"
+  }
+}
