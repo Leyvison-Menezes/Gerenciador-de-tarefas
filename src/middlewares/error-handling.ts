@@ -4,7 +4,7 @@ import { ZodError, z } from "zod";
 
 export function ErrorHandling(error: any, request: Request, response: Response, next: NextFunction){
     if(error instanceof AppError){
-        //Caso ocorra algo inesperado, a app para, e lança uma excessão nos códigos pré-definidos, conforme o APPError
+        //Caso ocorra algo inesperado, o app para e lança uma excessão, conforme o APPError
         return response.status(error.statusCode).json({ message: error.message })
     }
     if(error instanceof ZodError){
