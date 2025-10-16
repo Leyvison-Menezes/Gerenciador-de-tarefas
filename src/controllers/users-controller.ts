@@ -32,8 +32,7 @@ class UsersController{
 
         // Separa a senha dos dados restantes através do spread operator para não retorná-la
         const { password: _, ...userWithoutPassword } = user
-
-
+        
         return response.status(201).json(userWithoutPassword)
     }
     async index(request: Request, response: Response){
