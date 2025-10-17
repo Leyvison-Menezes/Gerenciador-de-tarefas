@@ -35,8 +35,10 @@ class UsersController{
         
         return response.status(201).json(userWithoutPassword)
     }
-    async index(request: Request, response: Response){
-        return response.status(201).json({ message: "rota get funcionante!"})
+      async index(request: Request, response: Response){
+        const users = await prisma.user.findMany()
+
+        return response.json(users)
     }
 }
 
