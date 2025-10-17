@@ -31,6 +31,7 @@ class SessionsController{
 
         // Criando o token
         const { secret, expiresIn } = authConfig.jwt
+        // Coloca-se o subject no SignOption, pois ele é considerado um registered claim.
         const token = sign({ role: user.role ?? "member" }, secret, { 
             subject: user.id,
             expiresIn,
