@@ -64,7 +64,7 @@ model TeamMember {
 
   createdAt DateTime @default(now()) @map("created_at")
 
-  user   User    @relation(fields: [userId], references: [id])
+  user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   team   Team    @relation(fields: [teamId], references: [id])
   taskId String?
 
@@ -87,7 +87,7 @@ model Task {
   updatedAt DateTime @updatedAt @map("updated_at")
 
   user        User          @relation(fields: [assignedTo], references: [id])
-  team        Team          @relation(fields: [teamId], references: [id])
+  team        Team          @relation(fields: [teamId], references: [id], onDelete: Cascade)
   TaskHistory TaskHistory[]
 
   @@map("tasks")
