@@ -32,6 +32,34 @@ class TeamMembersController{
             message: `O usuário ${user.name} foi adicionado ao time ${team.name}`
         })
     }
+
+    async index(request: Request, response: Response){
+        const teamMembers = await prisma.teamMember.findMany()
+
+        return response.status(200).json(teamMembers)
+
+    }
+
+    async deleteMember(request: Request, response: Response){
+        const { teamId, userId } = request.params
+        // Verifica se o usuário está naquele time
+        const relation = await prisma.teamMember.findFirst({ where: { teamId, userId }})
+        if(!relation){
+            throw new AppError("Membro não encontrado neste time", 404)
+        }
+
+        // Deleta as tarefas associadas ao membro
+        // await prisma.task.deleteMany({ where: { 
+        //     teamId,
+        //     assignedTo: userId
+        // }})
+
+        await prisma.teamMember.deleteMany({ where: {
+            teamId, userId
+        }})
+
+        return response.status(200).json()
+    }
 }
 
 export { TeamMembersController }
