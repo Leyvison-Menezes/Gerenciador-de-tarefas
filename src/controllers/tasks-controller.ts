@@ -39,15 +39,19 @@ class TasksController{
 
         return response.status(201).json(task)
     }
+
      async index(request: Request, response: Response){
         const { teamId } = request.params
         const teamTasks = await prisma.task.findMany({ where: { teamId }, 
             select: {
                 id: true,
                 name: true,
+                description: true,
+                status: true,
+                priority: true,
                 user: {
                    select:{
-                    name: true
+                    name: true                    
                    }
                 },
                 team: {
@@ -63,6 +67,34 @@ class TasksController{
 
         return response.json(teamTasks)
      }
+
+      async update(request: Request, response: Response){
+        const { id } = request.params
+        const taskId = await prisma.task.findUnique({ where: { id } })
+
+        const bodySchema = z.object({
+            name: z.string().optional(),
+            description: z.string().optional(),
+            status: z.enum(["pending", "inProgress", "finished"]).optional(),
+            priority: z.enum(["low", "medium", "high"]).optional(),
+            assignedTo: z.string().optional(),
+        })
+        const { name, description, status, priority, assignedTo } = bodySchema.parse(request.body)
+        if(!taskId){
+            throw new AppError("Tarefa não encontrada!", 404)
+        }
+
+        await prisma.task.update( { where: { id }, data: {
+            name,
+            description,
+            status,
+            priority,
+            assignedTo
+        }})
+
+        return response.status(200).json()
+
+      }
 
 }
 export { TasksController }
