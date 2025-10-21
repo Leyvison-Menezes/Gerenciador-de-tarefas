@@ -59,7 +59,7 @@ class TeamsController {
         await prisma.teamMember.deleteMany({ where: { teamId: id } })
 
         // Deletar as tarefas associadas
-        // await prisma.task.deleteMany({ where: { teamId: id } })
+        await prisma.task.deleteMany({ where: { teamId: id } })
 
         // Adotar no futuro uma dupla conformidade
         await prisma.team.delete({ where: { id }})

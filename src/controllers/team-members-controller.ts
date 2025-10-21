@@ -53,10 +53,10 @@ class TeamMembersController{
         }
 
         // Deleta as tarefas associadas ao membro
-        // await prisma.task.deleteMany({ where: { 
-        //     teamId,
-        //     assignedTo: userId
-        // }})
+        await prisma.task.deleteMany({ where: { 
+            teamId,
+            assignedTo: userId
+        }})
 
         await prisma.teamMember.deleteMany({ where: {
             teamId, userId
