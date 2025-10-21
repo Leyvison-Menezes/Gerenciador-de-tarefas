@@ -53,7 +53,7 @@ Body:
 }
 ```
 
-![Login Preview](login.png)
+<img src="images/login.png" width="400">
 
 ---
 
@@ -85,7 +85,7 @@ Body:
 }
 ```
 
-![Create Task Preview](create-task.png)
+<img src="images/create-task.png" width="400">
 
 ---
 
@@ -170,10 +170,5 @@ npm run test:dev
 
 ---
 
-📸 **Demonstrações** incluídas:
-- Login (`login.png`)
-- Criação de Tarefa (`create-task.png`)
 
----
-
-Feito com ❤️ por [Leyvison Menezes](https://github.com/Leyvison-Menezes)
+Feito por [Leyvison Menezes](https://github.com/Leyvison-Menezes)
