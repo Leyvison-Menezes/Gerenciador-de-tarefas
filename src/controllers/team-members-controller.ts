@@ -34,7 +34,11 @@ class TeamMembersController{
     }
 
     async index(request: Request, response: Response){
-        const teamMembers = await prisma.teamMember.findMany()
+        const teamMembers = await prisma.teamMember.findMany({ select: {
+            id: true,
+            team: { select: { name: true, id: true }},
+            user: { select: { name: true, id: true }}
+        }})
 
         return response.status(200).json(teamMembers)
 

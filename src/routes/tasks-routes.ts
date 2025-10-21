@@ -8,6 +8,7 @@ const tasksController = new TasksController()
 
 tasksRoutes.post("/", ensureAuthenticated, ensureRole(["admin"]), tasksController.create)
 tasksRoutes.get("/:teamId", ensureAuthenticated, ensureRole(["admin"]), tasksController.index)
-tasksRoutes.patch("/:id", ensureAuthenticated, ensureRole(["admin"]), tasksController.update)
+tasksRoutes.patch("/:id", ensureAuthenticated, ensureRole(["admin", "member"]), tasksController.update)
+tasksRoutes.delete("/:id/:assignedTo", ensureAuthenticated, ensureRole(["admin"]), tasksController.delete)
 
 export { tasksRoutes }
